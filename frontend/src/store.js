@@ -1,7 +1,7 @@
 import {configureStore} from '@reduxjs/toolkit';
 import {apiSlice} from './slices/apiSlice'
 import cartSliceReducer from "./slices/cartSlice"
-import  toggletheme from '../../../Redux/redux/src/features/theme/darkSlice';
+import  toggletheme from './slices/themeSlice';
 import authSliceReducer from './slices/authSlice'
 
 const store = configureStore({
