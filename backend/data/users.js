@@ -1,22 +1,20 @@
-import bcrypt from 'bcrypt';
-
-const user = [
+const users = [
     {
-        name:"Admin",
-        email:"admin@gmail.com",
-        password:await bcrypt.hash("1234567",10),
-        isAmin:true
-    },{
-        name:"Mohan",
-        email:"Mohan@gmail.com",
-        password:await bcrypt.hash("1234567",10),
-        isAmin:false
-    },{
-        name:"raj",
-        email:"raj@gmail.com",
-        password:await bcrypt.hash("1234567",10),
-        isAmin:false
+        name: "Admin",
+        email: "admin@gmail.com",
+        password: "1234567",
+        isAdmin: true
+    }, {
+        name: "Mohan",
+        email: "Mohan@gmail.com",
+        password: "1234567",
+        isAdmin: false
+    }, {
+        name: "raj",
+        email: "raj@gmail.com",
+        password: "1234567",
+        isAdmin: false
     }
 ]
 
-export default user;
+export default users;
