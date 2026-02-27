@@ -1,16 +1,17 @@
-import express from 'express'
-import products from './data/products.js'
+import express from 'express';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import connectDB from './config/db.js';
-import Product from './model/productModel.js';
-import User from './model/userModel.js';
-import mongoose from 'mongoose';
-import productRoutes from "./routes/productRoutes.js"
-import { notFound } from "./middleware/ErrorMiddleware.js"
-import { errorHandler } from "./middleware/ErrorMiddleware.js"
-import userRoute from "./routes/userRoutes.js"
-import orderRoutes from "./routes/orderRoutes.js"
-import cookieParser from "cookie-parser"
+
+// Route imports
+import productRoutes from './routes/productRoutes.js';
+import userRoutes from './routes/userRoutes.js';
+import orderRoutes from './routes/orderRoutes.js';
+
+// Middleware imports
+import { notFound, errorHandler } from './middleware/ErrorMiddleware.js';
+
+console.log('Loading Majesty Backend...');
 
 
 const app = express()
@@ -39,9 +40,9 @@ app.get('/', (req, res) => {
   res.send('Home Page')
 })
 
-app.use("/api/products", productRoutes);
-app.use("/api/users", userRoute);
-app.use("/api/orders", orderRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/orders', orderRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
