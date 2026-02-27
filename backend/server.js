@@ -24,11 +24,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
 app.use(cors({
-  origin: ["http://localhost:5173", "http://localhost:5174", "https://majesty-taupe.vercel.app"],
+  origin: true,
   credentials: true
 }));
 
 app.use(cookieParser());
+
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', environment: process.env.NODE_ENV });
+});
 
 app.get('/', (req, res) => {
   console.log("Home")
