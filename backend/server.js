@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
 app.use(cors({
-  origin: ["http://localhost:5173", "http://localhost:5174"],
+  origin: ["http://localhost:5173", "http://localhost:5174", "https://majesty-taupe.vercel.app"],
   credentials: true
 }));
 
@@ -46,3 +46,5 @@ app.use(errorHandler);
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+
+export default app;
