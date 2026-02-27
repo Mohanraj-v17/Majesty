@@ -12,8 +12,7 @@
     "client": "npm run dev --prefix frontend",
     "both": "concurrently \"npm run server\" \"npm run client\" ",
     "data:import": "node backend/seeder.js",
-    "data:destroy": "node backend/seeder.js -d",
-    "build" : "vite build"
+    "data:destroy": "node backend/seeder.js -d"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
