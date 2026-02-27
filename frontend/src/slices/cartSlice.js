@@ -1,65 +1,81 @@
-import {createSlice} from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")): {cartItem:[]};
+const addDecimals = (num) => {
+    return (Math.round(num * 100) / 100).toFixed(2);
+};
 
-const cartSlice = createSlice ({
-    name:"cart",
+const updateCart = (state) => {
+    // Calculate items price
+    state.itemPrice = addDecimals(
+        state.cartItem.reduce((acc, item) => acc + item.price * item.qty, 0)
+    );
+
+    // Calculate shipping price (If order is over $100 then free, else $10)
+    state.shippingPrice = addDecimals(state.itemPrice > 100 ? 0 : 10);
+
+    // Calculate tax price (15% tax)
+    state.taxPrice = addDecimals(Number((0.15 * state.itemPrice).toFixed(2)));
+
+    // Calculate total price
+    state.totalPrice = (
+        Number(state.itemPrice) +
+        Number(state.shippingPrice) +
+        Number(state.taxPrice)
+    ).toFixed(2);
+
+    localStorage.setItem('cart', JSON.stringify(state));
+
+    return state;
+};
+
+const initialState = localStorage.getItem('cart')
+    ? JSON.parse(localStorage.getItem('cart'))
+    : { cartItem: [], shippingAddress: {}, paymentMethod: 'Online Payment' };
+
+const cartSlice = createSlice({
+    name: 'cart',
     initialState,
-    reducers:{
-        addToCart: (state, action) =>{
+    reducers: {
+        addToCart: (state, action) => {
             const item = action.payload;
 
-            const existItem = state.cartItem.find((a) => a._id === item._id);
+            const existItem = state.cartItem.find((x) => x._id === item._id);
 
-            if(existItem){
-                state.cartItem = state.cartItem.map((a) =>  a._id === existItem._id ? item : a);
-        }else{
-            state.cartItem = [...state.cartItem, item];
+            if (existItem) {
+                state.cartItem = state.cartItem.map((x) =>
+                    x._id === existItem._id ? item : x
+                );
+            } else {
+                state.cartItem = [...state.cartItem, item];
+            }
 
-        }
-
-        state.itemPrice = state.cartItem.reduce(
-            (acc, item) => acc + item.price * item.qty, 0
-        )
-        
-
-        state.shippingPrice = state.itemPrice > 100 ? 0 : 20;
-        
-
-        state.taxPrice = Number(0.18 * state.itemPrice);
-        
-
-        state.totalPrice = 
-        Number(state.itemPrice)+
-        Number(state.shippingPrice)+
-        Number(state.taxPrice);
-
-        localStorage.setItem("cart", JSON.stringify(state))
+            return updateCart(state);
+        },
+        removeFromCart: (state, action) => {
+            state.cartItem = state.cartItem.filter((x) => x._id !== action.payload);
+            return updateCart(state);
+        },
+        saveShippingAddress: (state, action) => {
+            state.shippingAddress = action.payload;
+            return updateCart(state);
+        },
+        savePaymentMethod: (state, action) => {
+            state.paymentMethod = action.payload;
+            return updateCart(state);
+        },
+        clearCartItems: (state) => {
+            state.cartItem = [];
+            return updateCart(state);
+        },
     },
-    removeFromCart: (state,action) =>{
-        state.cartItem = state.cartItem.filter((x) => x._id !== action.payload)
-
-        state.itemPrice = state.cartItem.reduce(
-            (acc, item) => acc + item.price * item.qty, 0
-        )
-        
-
-        state.shippingPrice = state.itemPrice > 100 ? 0 : 20;
-        
-
-        state.taxPrice = Number(0.18 * state.itemPrice);
-        
-
-        state.totalPrice = 
-        Number(state.itemPrice)+
-        Number(state.shippingPrice)+
-        Number(state.taxPrice);
-
-        localStorage.setItem("cart", JSON.stringify(state))
-    }
-}
 });
 
-export const {addToCart, removeFromCart} = cartSlice.actions;
+export const {
+    addToCart,
+    removeFromCart,
+    saveShippingAddress,
+    savePaymentMethod,
+    clearCartItems,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;
