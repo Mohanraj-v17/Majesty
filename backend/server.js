@@ -11,7 +11,7 @@ import orderRoutes from './routes/orderRoutes.js';
 // Middleware imports
 import { notFound, errorHandler } from './middleware/ErrorMiddleware.js';
 
-console.log('Loading Majesty Backend...');
+console.log('Majesty Backend: Initializing...');
 
 
 const app = express()
