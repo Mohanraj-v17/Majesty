@@ -5,11 +5,6 @@ import { useRegisterMutation } from '../slices/userApiSlice';
 import { toast } from 'react-toastify';
 import { setCredentials } from '../slices/authSlice';
 
-<<<<<<< HEAD
-
-=======
-// Eye-open SVG icon
->>>>>>> 2690897070caa24578df2a71f09838ad35aa12ed
 const EyeIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -17,11 +12,6 @@ const EyeIcon = () => (
     </svg>
 );
 
-<<<<<<< HEAD
-
-=======
-// Eye-off SVG icon
->>>>>>> 2690897070caa24578df2a71f09838ad35aa12ed
 const EyeOffIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.477 0-8.268-2.943-9.542-7a9.97 9.97 0 012.07-3.41M6.53 6.53A9.97 9.97 0 0112 5c4.478 0 8.268 2.943 9.542 7a9.975 9.975 0 01-4.072 5.428M3 3l18 18" />

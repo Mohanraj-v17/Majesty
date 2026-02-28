@@ -21,17 +21,10 @@ const authUser = asyncHandler(async (req, res) => {
 
             res.cookie("jwt", token, {
                 httpOnly: true,
-<<<<<<< HEAD
                 secure: true,
                 sameSite: "none",
                 maxAge: 30 * 24 * 60 * 60 * 1000
             });
-=======
-                secure: false,
-                sameSite: "strict",
-                maxAge: 30 * 24 * 60 * 60 * 10000
-            })
->>>>>>> 2690897070caa24578df2a71f09838ad35aa12ed
 
             res.status(200).json({
                 _id: user._id,
@@ -77,17 +70,10 @@ const registerUser = asyncHandler(async (req, res) => {
 
         res.cookie("jwt", token, {
             httpOnly: true,
-<<<<<<< HEAD
             secure: true,
             sameSite: "none",
             maxAge: 30 * 24 * 60 * 60 * 1000
         });
-=======
-            secure: false,
-            sameSite: "strict",
-            maxAge: 30 * 24 * 60 * 60 * 10000
-        })
->>>>>>> 2690897070caa24578df2a71f09838ad35aa12ed
 
         res.status(201).json({
             _id: user._id,
