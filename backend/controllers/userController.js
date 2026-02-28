@@ -153,7 +153,6 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     }
 })
 
-<<<<<<< HEAD
 const getUsers = asyncHandler(async (req, res) => {
     const users = await User.find({});
     res.status(200).json(users);
@@ -206,22 +205,6 @@ const updateUser = asyncHandler(async (req, res) => {
         res.status(404);
         throw new Error("User not found");
     }
-=======
-const getUser = asyncHandler(async (req, res) => {
-    res.send("Get User")
-})
-
-const getUserById = asyncHandler(async (req, res) => {
-    res.send("Get User By Id ")
-})
-
-const deleteUSer = asyncHandler(async (req, res) => {
-    res.send("Delete User")
-})
-
-const updateUser = asyncHandler(async (req, res) => {
-    res.send("Update User")
->>>>>>> 2690897070caa24578df2a71f09838ad35aa12ed
 })
 
 
@@ -231,14 +214,8 @@ export {
     logoutUser,
     getUserProfile,
     updateUserProfile,
-<<<<<<< HEAD
     getUsers,
     getUserById,
     deleteUser,
-=======
-    getUser,
-    getUserById,
-    deleteUSer,
->>>>>>> 2690897070caa24578df2a71f09838ad35aa12ed
     updateUser
 }
