@@ -22,7 +22,15 @@ const port = 5000
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "http://localhost:5174",
+    "https://majesty-rose.vercel.app",
+    "https://majesty-beta.vercel.app"
+  ],
+  credentials: true
+}));
 
 app.use(cookieParser());
 
