@@ -4,14 +4,22 @@ import Product from "./model/productModel.js";
 import User from "./model/userModel.js";
 import connectDB from "./config/db.js";
 
+<<<<<<< HEAD
 
+=======
+connectDB();
+>>>>>>> 2690897070caa24578df2a71f09838ad35aa12ed
 
 const importData = async () => {
     try {
         await Product.deleteMany();
         await User.deleteMany();
 
+<<<<<<< HEAD
         
+=======
+        // Use a loop with create to trigger the pre-save hook for password hashing
+>>>>>>> 2690897070caa24578df2a71f09838ad35aa12ed
         const createdUsers = [];
         for (const user of users) {
             const createdUser = await User.create(user);
