@@ -26,10 +26,12 @@ app.use(cors({
   origin: [
     "http://localhost:5173",
     "http://localhost:5174",
-    "https://majesty-rose.vercel.app",
-    "https://majesty-beta.vercel.app"
+    "https://majesty-beta.vercel.app",
+    "https://majesty-rose.vercel.app"
   ],
-  credentials: true
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
 app.use(cookieParser());
