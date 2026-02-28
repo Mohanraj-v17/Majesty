@@ -3,12 +3,12 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import connectDB from './config/db.js';
 
-// Route imports
+
 import productRoutes from './routes/productRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 
-// Middleware imports
+
 import { notFound, errorHandler } from './middleware/ErrorMiddleware.js';
 
 console.log('Majesty Backend: Initializing...');
@@ -25,9 +25,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
 app.use(cors({
-  origin: [ "http://localhost:5173/",
-     "https://majesty-seven.vercel.app/"
-     ],
+  origin: [
+    "http://localhost:5173",
+    "http://localhost:5174",
+    "https://majesty-seven.vercel.app"
+  ],
   credentials: true
 }));
 
